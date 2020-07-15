@@ -1,0 +1,9 @@
+<mat-form-field>
+  <mat-label>Name</mat-label>
+  <input 
+    placeholder="Enter name here"
+    matInput
+    type="text"
+    [(ngModel)]="value"
+    (keydown.enter)="handleKey($event)">
+</mat-form-field>
