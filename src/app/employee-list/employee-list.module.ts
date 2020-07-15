@@ -11,9 +11,15 @@ import { ListGenerator } from './services/tree-generator.service';
 import { MatIconModule } from '@angular/material/icon';
 import { NameInputComponent } from './components/name-input/name-input.component';
 import { ListComponent } from './components/list/list.component';
+import { CalculatePipe } from '../pipes/calculate.pipe';
 
 @NgModule({
-  declarations: [EmployeeListComponent, NameInputComponent, ListComponent],
+  declarations: [
+    EmployeeListComponent,
+    NameInputComponent,
+    ListComponent,
+    CalculatePipe
+  ],
   exports: [EmployeeListComponent],
   imports: [
     CommonModule,

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { EmployeeListModule } from './employee-list/employee-list.module';
+import { CalculatePipe } from './pipes/calculate.pipe';
 @NgModule({
   declarations: [
     AppComponent,

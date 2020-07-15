@@ -5,7 +5,7 @@
     </h3>
     <mat-chip-list>
       <mat-chip title="Score" color="primary" selected>
-        {{ calculate(item.num) }}
+        {{ item.num | calculate }}
       </mat-chip>
     </mat-chip-list>
     <mat-icon  aria-hidden="false" (click)="remove.emit(item)">delete</mat-icon>
