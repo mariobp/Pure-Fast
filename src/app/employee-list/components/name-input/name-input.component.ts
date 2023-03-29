@@ -1,11 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EmployeeData } from '../../services/tree-generator.service';
 
 @Component({
   selector: 'app-name-input',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './name-input.component.html',
-  styleUrls: ['./name-input.component.scss']
+  styleUrls: ['./name-input.component.scss'],
 })
 export class NameInputComponent implements OnInit {
   @Input() data: EmployeeData[];
