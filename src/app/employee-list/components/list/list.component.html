@@ -6,7 +6,7 @@
       </h3>
       <mat-chip-listbox >
         <mat-chip-option title="Score" color="primary">
-          {{ calculate(item.num) }}
+          {{ item.num | calculate }}
         </mat-chip-option>
       </mat-chip-listbox>
       <mat-icon  aria-hidden="false" (click)="remove.emit(item)">delete</mat-icon>

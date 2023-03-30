@@ -32,6 +32,13 @@ export class AppComponent implements OnInit {
     ];
   }
 
+  addToRndList(name: string) {    
+    this.rndList = [
+      { label: name, num: this.generator.generateNumber(NumRange) },
+      ...this.rndList
+    ];
+  }
+
   remove(list: EmployeeData[], node: EmployeeData) {
     list.splice(list.indexOf(node), 1);
   }
