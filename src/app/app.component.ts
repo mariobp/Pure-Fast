@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Injector, OnInit, WritableSignal, effect, signal } from '@angular/core';
 import { ListGenerator, EmployeeData } from './employee-list/services/tree-generator.service';
 import { Names } from './names';
 
@@ -10,15 +10,20 @@ const NumRange: [number, number] = [23, 28];
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  salesList: EmployeeData[];
-  rndList: EmployeeData[];
+  salesList: WritableSignal<EmployeeData[]> = signal(this.generator.generate(Names, NumRange, 100));
+  rndList: WritableSignal<EmployeeData[]> = signal(this.generator.generate(Names, NumRange, 100));
   label: string;
 
-  constructor(private generator: ListGenerator) {}
+  constructor(private generator: ListGenerator,
+    private injector: Injector) {}
 
+    showAlert = effect(() => {
+      if (this.salesList().length > 101) {
+        alert('We have more than 100 employees');
+      }
+    })
+    
   ngOnInit() {
-    this.salesList = this.generator.generate(Names, NumRange, 100);
-    this.rndList = this.generator.generate(Names, NumRange, 100);
   }
 
   add(list: EmployeeData[], name: string) {
@@ -26,17 +31,19 @@ export class AppComponent implements OnInit {
   }
 
   addToSales(name: string) {    
-    this.salesList = [
-      { label: name, num: this.generator.generateNumber(NumRange) },
-      ...this.salesList
-    ];
+    this.salesList.update(list => ([{ label: name, num: this.generator.generateNumber(NumRange) }, ...list]));
   }
 
   addToRndList(name: string) {    
-    this.rndList = [
-      { label: name, num: this.generator.generateNumber(NumRange) },
-      ...this.rndList
-    ];
+    this.rndList.update(list => ([{ label: name, num: this.generator.generateNumber(NumRange) }, ...list]));
+  }
+
+  removeFromSales(node: EmployeeData) {
+    this.salesList.update(list => list.filter(item => item !== node));
+  }
+
+  removeFromRndList(node: EmployeeData) {
+    this.rndList.update(list => list.filter(item => item !== node));
   }
 
   remove(list: EmployeeData[], node: EmployeeData) {

@@ -1,13 +1,13 @@
 <app-employee-list
-  [data]="salesList"
+  [data]="salesList()"
   department="Sales"
   (add)="addToSales($event)"
-  (remove)="remove(salesList, $event)"
+  (remove)="removeFromSales($event)"
 ></app-employee-list>
 
 <app-employee-list
-  [data]="rndList"
+  [data]="rndList()"
   department="R&D"
   (add)="addToRndList($event)"
-  (remove)="remove(rndList, $event)"
+  (remove)="removeFromRndList($event)"
 ></app-employee-list>
